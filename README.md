@@ -3,7 +3,7 @@
 Code and data to reproduce the figures in:
 
 > **Xenios et al. (2025).** *GENKI: A generative framework for scalable and robust metabolic kinetic modeling.*
-> DOI: `10.5281/zenodo.20669712 — fill in once published`
+> DOI:
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20669712.svg)](https://doi.org/10.5281/zenodo.20669712)
 
