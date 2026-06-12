@@ -1,0 +1,175 @@
+HOW TO REPRODUCE THE FIGURES
+==============================
+Xenios et al. (2025) — GENKI
+
+
+PREREQUISITES
+-------------
+Two conda environments are required. Create them once.
+
+── Environment 1: env_genki_ml (notebooks only, no skimpy) ──────────────────
+
+  conda create -n env_genki_ml python=3.10
+  conda activate env_genki_ml
+  pip install -r requirements_ml.txt
+
+── Environment 2: env_genki_sim (figure scripts, requires skimpy) ───────────
+
+skimpy is NOT on PyPI. It must be installed from the official GitHub release
+before running pip install. Two options:
+
+  Official releases page: https://github.com/EPFL-LCSB/skimpy/releases
+
+  OPTION A — conda package (Linux / macOS, easiest):
+
+    conda create -n env_genki_sim python=3.10
+    conda activate env_genki_sim
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    conda config --set channel_priority strict
+    conda install weilandtd::skimpy
+
+  OPTION B — install from source (all platforms):
+
+    # Ubuntu/Debian — install system libraries first:
+    sudo apt install gfortran libsundials-dev libflint-dev libgmp-dev
+
+    conda create -n env_genki_sim python=3.10
+    conda activate env_genki_sim
+    git clone https://github.com/EPFL-LCSB/skimpy.git /path/to/skimpy
+    pip install -e /path/to/skimpy
+
+  After skimpy is installed (either option), install the remaining packages:
+
+    pip install -r requirements_sim.txt
+
+  For commercial solver setup (CPLEX / GUROBI, needed by pytfa for sampling):
+    https://github.com/EPFL-LCSB/skimpy/blob/master/SOLVERS.md
+
+  Note: the simulation scripts do NOT run the ORACLE sampling step — the
+  ORACLE Km files are already included in data/. A commercial solver is only
+  needed if you want to re-generate the ORACLE ensembles from scratch.
+─────────────────────────────────────────────────────────────────────────────
+
+
+STEP 1 — GENERATE Km PARAMETER SETS  (env_genki_ml)
+-----------------------------------------------------
+Run the notebooks from the notebooks/ directory.
+Each section trains a cVAE and exports a Km CSV to outputs/.
+
+  conda activate env_genki_ml
+  cd notebooks/
+  jupyter notebook 01_ecoli_cvae_training.ipynb
+  jupyter notebook 02_yeast_cvae_training.ipynb
+
+Run all cells top-to-bottom. The last cell of each section saves the CSV.
+
+  Section 1  →  outputs/ecoli_pgi_km.csv            (~5-15 min)
+  Section 2  →  outputs/ecoli_multimutant_km.csv     (~5-15 min)
+  Section 3  →  outputs/ecoli_generalization_km.csv  (~5-15 min)
+  Yeast nb   →  outputs/yeast_cvae_km.csv            (~15-30 min)
+
+
+STEP 2 — REPRODUCE FIGURES  (env_genki_sim)
+-------------------------------------------
+Run all scripts from the REPOSITORY ROOT (not from scripts/).
+
+  conda activate env_genki_sim
+
+  # Figure 2 — KPI distribution, threshold barplot, flux scatter (PGI)
+  python scripts/reproduce_fig2_pgi.py \
+      --km-file outputs/ecoli_pgi_km.csv
+
+  # Figures 4, 5, 6 — Km shifts, KPI distributions, UpSet (5-mutant)
+  python scripts/reproduce_fig4_5_6_multimutant.py \
+      --km-file outputs/ecoli_multimutant_km.csv
+
+  # Figures 7, 8 — KPI distributions + flux scatter (generalization)
+  python scripts/reproduce_fig7_8_generalization.py \
+      --km-file outputs/ecoli_generalization_km.csv
+
+  # Figure 9 — threshold barplot, Km shifts, KPI distributions (yeast)
+  python scripts/reproduce_fig9_yeast.py \
+      --km-file outputs/yeast_cvae_km.csv
+
+Figures are saved to results/<fig_name>/images/
+
+
+OPTIONAL — REGENERATE FIGURES WITHOUT RE-RUNNING SIMULATIONS
+-------------------------------------------------------------
+If the ODE simulations have already completed once, you can skip them and
+re-run only the scoring and figure generation using --plot-only:
+
+  python scripts/reproduce_fig2_pgi.py \
+      --km-file outputs/ecoli_pgi_km.csv \
+      --plot-only
+
+  python scripts/reproduce_fig4_5_6_multimutant.py \
+      --km-file outputs/ecoli_multimutant_km.csv \
+      --plot-only
+
+  python scripts/reproduce_fig7_8_generalization.py \
+      --km-file outputs/ecoli_generalization_km.csv \
+      --plot-only
+
+  python scripts/reproduce_fig9_yeast.py \
+      --km-file outputs/yeast_cvae_km.csv \
+      --plot-only
+
+This requires that the enzyme perturbation CSVs from the previous run still
+exist under results/<fig_name>/enzyme_perturbations/. The script will raise
+a FileNotFoundError with the expected path if they are missing.
+
+
+OPTIONAL — ADJUST PARALLELISM
+------------------------------
+E. coli scripts accept --n-jobs (default: one worker per perturbation):
+
+  python scripts/reproduce_fig4_5_6_multimutant.py \
+      --km-file outputs/ecoli_multimutant_km.csv \
+      --n-jobs 4
+
+Yeast script has separate controls for stability and simulation stages:
+
+  python scripts/reproduce_fig9_yeast.py \
+      --km-file outputs/yeast_cvae_km.csv \
+      --n-jobs-stability 8 \
+      --n-jobs-simulation 4
+
+
+APPROXIMATE RUNTIMES (16-core workstation)
+------------------------------------------
+  Fig 2  (1 perturbation)               20–40 min
+  Fig 4–6 (5 perturbations, parallel)    1–2 h
+  Fig 7–8 (6 perturbations, parallel)    1.5–3 h
+  Fig 9   (yeast, 8 perturbations)       2–4 h
+
+GPU acceleration applies only to the cVAE training in Step 1.
+
+
+TROUBLESHOOTING
+---------------
+- "ModuleNotFoundError: skimpy" in a script
+    → You are in env_genki_ml. Switch to env_genki_sim.
+    → Or skimpy was not installed — follow Option A or B in PREREQUISITES above.
+
+- "ModuleNotFoundError: scikits.odes" or CVODE not found
+    → The sundials ODE solver is missing. Install the system library and
+      reinstall skimpy from source (Option B):
+        sudo apt install libsundials-dev
+        pip install -e /path/to/skimpy
+
+- "ModuleNotFoundError: cvae" in a notebook
+    → The notebook is not being run from the notebooks/ directory, or
+      env_genki_ml is not active. Switch to env_genki_ml.
+
+- "ModuleNotFoundError: upsetplot" or "ModuleNotFoundError: seaborn"
+    → Run:  pip install -r requirements_sim.txt
+
+- CVODE solver warnings during ODE integration
+    → Normal for stiff large-scale ODE systems. Results are unaffected
+      unless the solver explicitly reports failure and returns NaN.
+
+- KeyError on a flux or reaction name in a figure script
+    → The wrong --km-file is being passed. Each script expects the output
+      of a specific notebook section (see STEP 2 table above).

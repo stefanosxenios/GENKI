@@ -1,0 +1,23 @@
+# env_genki_ml — ML/training environment
+# Use for: notebooks/01_ecoli_cvae_training.ipynb
+#           notebooks/02_yeast_cvae_training.ipynb
+#
+# Does NOT require skimpy or pytfa.
+# Tested with Python 3.10.
+#
+# Install:
+#   conda create -n env_genki_ml python=3.10
+#   conda activate env_genki_ml
+#   pip install -r requirements_ml.txt
+
+tensorflow>=2.12,<2.16
+keras>=2.12
+numpy>=1.23
+pandas>=1.5
+scikit-learn>=1.2
+matplotlib>=3.6
+seaborn>=0.12
+umap-learn>=0.5
+tqdm
+ipykernel
+jupyter

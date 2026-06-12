@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the paper below."
+type: software
+title: "GENKI: A generative framework for scalable and robust metabolic kinetic modeling"
+authors:
+  - family-names: Xenios
+    given-names: Stefanos
+    orcid: "https://orcid.org/0009-0000-5688-363X"
+repository-code: "https://github.com/stefanosxenios/GENKI"
+license: MIT
+preferred-citation:
+  type: article
+  title: "GENKI: A generative framework for scalable and robust metabolic kinetic modeling"
+  authors:
+    - family-names: Xenios
+      given-names: Stefanos
+  journal: "TODO — fill in journal name"
+  year: 2025
+  doi: "TODO — fill in DOI once published"

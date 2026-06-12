@@ -1,0 +1,55 @@
+# env_genki_sim — Simulation/figure-reproduction environment
+# Use for: scripts/reproduce_fig2_pgi.py
+#           scripts/reproduce_fig4_5_6_multimutant.py
+#           scripts/reproduce_fig7_8_generalization.py
+#           scripts/reproduce_fig9_yeast.py
+#
+# ── IMPORTANT — skimpy and pytfa must be installed BEFORE this file ────────
+#
+# skimpy requires system-level libraries (SUNDIALS ODE solver, gfortran) and
+# is NOT available on PyPI. Install it from the official GitHub release:
+#
+#   Official releases:  https://github.com/EPFL-LCSB/skimpy/releases
+#
+#   Option A — conda package (Linux / macOS, recommended):
+#     conda config --add channels bioconda
+#     conda config --add channels conda-forge
+#     conda config --set channel_priority strict
+#     conda install weilandtd::skimpy
+#
+#   Option B — from source (all platforms):
+#     # First install system libraries (Ubuntu/Debian):
+#     sudo apt install gfortran libsundials-dev libflint-dev libgmp-dev
+#     # Then clone and install:
+#     git clone https://github.com/EPFL-LCSB/skimpy.git /path/to/skimpy
+#     pip install -e /path/to/skimpy
+#
+#   pytfa is installed automatically as a skimpy dependency; if not:
+#     pip install pytfa
+#
+#   For commercial solver setup (CPLEX / GUROBI, required for pytfa sampling):
+#     https://github.com/EPFL-LCSB/skimpy/blob/master/SOLVERS.md
+#
+# ── After skimpy is installed, install the remaining packages ──────────────
+#   pip install -r requirements_sim.txt
+# ──────────────────────────────────────────────────────────────────────────
+
+# Scientific stack
+numpy>=1.23
+pandas>=1.5
+scipy>=1.9
+sympy>=1.11
+
+# Plotting and figure output
+matplotlib>=3.6
+seaborn>=0.12
+
+# Parallel simulation
+joblib>=1.2
+
+# UpSet plot (Figure 6)
+upsetplot>=0.8
+
+# Notebook support (optional, for interactive use)
+ipykernel
+jupyter

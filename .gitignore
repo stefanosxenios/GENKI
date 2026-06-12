@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.ipynb_checkpoints/
+
+# Environments
+env_genki_ml/
+env_genki_sim/
+*.egg-info/
+dist/
+build/
+
+# Generated outputs (produced by notebooks — download reference versions from Zenodo)
+outputs/
+
+# Figure outputs (produced by reproduce scripts)
+results/
+
+# Large data — hosted on Zenodo, not in this repo
+data/data_for_training/
+data/data_for_training_yeast/
+data/ORACLE_sample_9.csv
+data/enzyme_perturbations/
+data/enzyme_perturbations_yeast/oracle_single_tfa_sample.csv
+
+# Development artefacts — not part of the reproducible pipeline
+ml4parameters/
+data/*.ipynb
+data/*.log
+data/*.xlsx
+data/fluxes_exp.csv
+data/synthetic_parameters/
+data/synthetic_yeast/
+data/parameters/
+data/output/
+data/logs/
+logs/
+
+# Temp / lock files
+*.fLtqkj
+*.ktiowR
+**/.yeast_augmented*
+**/synthetic_raw_vae*
+
+# OS / editors
+.DS_Store
+.vscode/
+*.swp
