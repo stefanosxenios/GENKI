@@ -3,9 +3,9 @@
 Code and data to reproduce the figures in:
 
 > **Xenios et al. (2025).** *GENKI: A generative framework for scalable and robust metabolic kinetic modeling.*
-> DOI: `TODO — fill in once published`
+> DOI: `10.5281/zenodo.20669712 — fill in once published`
 
-[![DOI](https://zenodo.org/badge/DOI/TODO.svg)](https://doi.org/TODO)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20669712.svg)](https://doi.org/10.5281/zenodo.20669712)
 
 ---
 
@@ -14,7 +14,7 @@ Code and data to reproduce the figures in:
 Large data files are hosted on Zenodo and must be downloaded before running
 the notebooks or figure scripts:
 
-**Zenodo record:** [https://doi.org/TODO](https://doi.org/TODO) *(update once uploaded)*
+**Zenodo record:** [https://doi.org/10.5281/zenodo.20669712](https://doi.org/10.5281/zenodo.20669712) *(update once uploaded)*
 
 After downloading, place the files so the repository looks like this:
 
