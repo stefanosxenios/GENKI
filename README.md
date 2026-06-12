@@ -86,9 +86,8 @@ GENKI_repo/
 │   └── reproduce_fig9_yeast.py         # Figure 9
 ├── src/                                # Pipeline internals (called by scripts)
 ├── ml4parameters/                      # cVAE architecture and utilities
-├── preprocessing/                      # Flux/Km preprocessing helpers
+├── preprocessing/                      # Flux/Km scoring and plotting helpers
 ├── skimpy_tools/                       # Stability checks and ODE utilities
-├── functions/                          # KPI scoring functions
 ├── data/                               # ORACLE samples, training data, models
 ├── models/                             # Kinetic and thermodynamic model files
 ├── outputs/                            # Km CSVs exported by notebooks (gitignored)
