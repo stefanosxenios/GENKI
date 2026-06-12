@@ -230,12 +230,12 @@ Runtimes depend on hardware. Approximate wall-clock times on a
 
 | Step | Time |
 |------|------|
-| cVAE training (E. coli, 120 epochs) | 5–15 min |
-| cVAE training (yeast, 180 epochs) | 15–30 min |
+| cVAE training (E. coli, 120 epochs) | 1–5 min |
+| cVAE training (yeast, 180 epochs) | 1–5 min |
 | Fig 2 (stability + 1 ODE perturbation) | 20–40 min |
-| Fig 4–6 (5 perturbations, parallel) | 1–2 h |
-| Fig 7–8 (6 perturbations, parallel) | 1.5–3 h |
-| Fig 9 (yeast, 8 perturbations) | 2–4 h |
+| Fig 4–6 (5 perturbations, parallel) | 1–2 h  (depends on parallel processing)|
+| Fig 7–8 (6 perturbations, parallel) | 1.5–3 h  depends on parallel processing)|
+| Fig 9 (yeast, 8 perturbations) | 2–4 h depends on parallel processing)|
 
 GPU acceleration is supported for the cVAE training steps (TensorFlow).
 
@@ -243,5 +243,4 @@ GPU acceleration is supported for the cVAE training steps (TensorFlow).
 
 ## Contact
 
-Stefanos Xenios — EPFL LCSB  
-Vassily Hatzimanikatis — EPFL LCSB
+Stefanos Xenios — NTUA
