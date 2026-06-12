@@ -24,8 +24,13 @@ data/ORACLE_sample_9.csv
 data/enzyme_perturbations/
 data/enzyme_perturbations_yeast/oracle_single_tfa_sample.csv
 
-# Development artefacts — not part of the reproducible pipeline
-ml4parameters/
+# Development artefacts inside ml4parameters — not part of the reproducible pipeline
+ml4parameters/data/
+ml4parameters/logs/
+ml4parameters/*.ipynb
+ml4parameters/*.csv
+ml4parameters/*.xlsx
+ml4parameters/*.png
 data/*.ipynb
 data/*.log
 data/*.xlsx
