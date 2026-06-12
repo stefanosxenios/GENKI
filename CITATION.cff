@@ -6,6 +6,7 @@ authors:
   - family-names: Xenios
     given-names: Stefanos
     orcid: "https://orcid.org/0009-0000-5688-363X"
+    affiliation: "National Technical University of Athens"
 repository-code: "https://github.com/stefanosxenios/GENKI"
 license: MIT
 preferred-citation:
@@ -14,6 +15,7 @@ preferred-citation:
   authors:
     - family-names: Xenios
       given-names: Stefanos
+      affiliation: "National Technical University of Athens"
   journal: "TODO — fill in journal name"
   year: 2025
   doi: "TODO — fill in DOI once published"
