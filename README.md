@@ -187,7 +187,7 @@ or `--n-jobs-stability` / `--n-jobs-simulation` (yeast script):
 python scripts/reproduce_fig9_yeast.py \
     --km-file outputs/yeast_cvae_km.csv \
     --n-jobs-stability 8 \
-    --n-jobs-simulation 4
+    --n-jobs-simulation 8
 ```
 
 ---
