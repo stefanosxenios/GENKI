@@ -34,12 +34,6 @@
 #   pip install -r requirements_sim.txt
 # ──────────────────────────────────────────────────────────────────────────
 
-# Scientific stack
-numpy>=1.23
-pandas>=1.5
-scipy>=1.9
-sympy>=1.11
-
 # Plotting and figure output
 matplotlib>=3.6
 seaborn>=0.12

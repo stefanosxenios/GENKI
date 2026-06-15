@@ -408,6 +408,7 @@ def compare_km_means(
             # Human-readable aliases applied before LaTeX escaping
             _REACTION_ALIASES = {
                 "BIOMASS_Ecoli_core_w_GAM": "Growth",
+                "LMPD_s_0450_c_1_256":      "Growth",
             }
 
             if _pcol and _rcol and _mcol:

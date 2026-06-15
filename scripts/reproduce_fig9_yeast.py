@@ -114,6 +114,10 @@ def main():
         "--n-jobs-simulation",  str(args.n_jobs_simulation),
         "--plot-label",         "GENKI",
     ]
+    # Only produce figures in the paper: global KPI histogram, Km comparison, scatter.
+    argv += ["--skip-per-metric-histograms", "--kpi-clip-percentile", "99",
+             "--hist-xmax", "50"]
+
     if args.plot_only:
         argv.append("--skip-perturbation")
 

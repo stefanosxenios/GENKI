@@ -679,7 +679,7 @@ def plot_kpi_histogram(
     fn(
         {model_name: kpi_cand_plot, "ORACLE": kpi_oracle_plot},
         title="Yeast – Global KPI",
-        xlim=(args.hist_xmin, args.hist_xmax) if args.hist_xmin is not None else None,
+        xlim=(args.hist_xmin, args.hist_xmax) if (args.hist_xmin is not None or args.hist_xmax is not None) else None,
         figsize=(args.hist_width, args.hist_height),
         savepath=savepath,
     )
@@ -853,7 +853,8 @@ def run_plots(
     plot_kpi_histogram(scoring_payload, model_name, images_dir, args, plot_deps)
 
     # b) Per-metric histograms
-    plot_per_metric_histograms(scoring_payload, model_name, images_dir, args, plot_deps)
+    if not args.skip_per_metric_histograms:
+        plot_per_metric_histograms(scoring_payload, model_name, images_dir, args, plot_deps)
 
     # c) Oracle-threshold barplot
     plot_threshold_barplot(scoring_payload, model_name, images_dir, args, plot_deps)
@@ -939,6 +940,8 @@ def parse_args(argv: Optional[Iterable[str]] = None):
     p.add_argument("--skip-scoring",  action="store_true")
     p.add_argument("--skip-scatter",  action="store_true",
                    help="Skip the predicted-vs-observed scatter plot.")
+    p.add_argument("--skip-per-metric-histograms", action="store_true",
+                   help="Skip per-reaction/component histograms; plot only the global KPI histogram.")
 
     # ---- scoring ----
     p.add_argument("--scoring", choices=["mape", "zscore"], default="zscore",

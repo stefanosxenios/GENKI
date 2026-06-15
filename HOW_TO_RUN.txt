@@ -20,14 +20,16 @@ before running pip install. Two options:
 
   Official releases page: https://github.com/EPFL-LCSB/skimpy/releases
 
-  OPTION A — conda package (Linux / macOS, easiest):
+  OPTION A — conda package with pinned version (recommended):
 
-    conda create -n env_genki_sim python=3.10
+    conda create -n env_genki_sim python=3.8
     conda activate env_genki_sim
-    conda config --add channels bioconda
-    conda config --add channels conda-forge
-    conda config --set channel_priority strict
-    conda install weilandtd::skimpy
+    conda install -c weilandtd -c conda-forge -c defaults skimpy=1.0.2 --no-channel-priority
+    conda install -c conda-forge "sympy==1.9"
+
+  After skimpy is installed, install the remaining packages:
+
+    pip install -r requirements_sim.txt
 
   OPTION B — install from source (all platforms):
 
@@ -39,7 +41,7 @@ before running pip install. Two options:
     git clone https://github.com/EPFL-LCSB/skimpy.git /path/to/skimpy
     pip install -e /path/to/skimpy
 
-  After skimpy is installed (either option), install the remaining packages:
+  After skimpy is installed, install the remaining packages:
 
     pip install -r requirements_sim.txt
 
