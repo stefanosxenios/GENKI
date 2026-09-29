@@ -14,7 +14,7 @@ Code and data to reproduce the figures in:
 Large data files are hosted on Zenodo and must be downloaded before running
 the notebooks or figure scripts:
 
-**Zenodo record:** [https://doi.org/10.5281/zenodo.20669712](https://doi.org/10.5281/zenodo.20669712) *(update once uploaded)*
+**Zenodo record:** [https://doi.org/10.5281/zenodo.20669712](https://doi.org/10.5281/zenodo.20669712) 
 
 After downloading, place the files so the repository looks like this:
 
